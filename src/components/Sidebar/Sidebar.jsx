@@ -57,7 +57,7 @@ const Sidebar = ({sidebar}) => {
       </div>
       <hr />
       <div className="subscribed-list">
-        <h3>Subscribed</h3>
+        {sidebar?<h3>Subscribed</h3>:<></>}
         <div className="side-links">
           <img src={jack} alt="" />
           <p>PewDiePie</p>
