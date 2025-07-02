@@ -10,9 +10,105 @@ import thumbnail7 from '../../assets/thumbnail7.png'
 import thumbnail8 from '../../assets/thumbnail8.png'
 
 const Feed = () => {
-  return (
-    <div>
-      
+    return (
+      <div className="feed">
+            
+      <div className="card">
+          <img src={thumbnail1} alt="" />
+          <h2>Best channel to learn coding that help you to be a web developer</h2>
+          <h3>Greatstack</h3>
+          <p>15k views &bull; 2 days ago</p>
+      </div>
+      <div className="card">
+          <img src={thumbnail2} alt="" />
+          <h2>Best channel to learn coding that help you to be a web developer</h2>
+          <h3>Greatstack</h3>
+          <p>15k views &bull; 2 days ago</p>
+      </div>
+      <div className="card">
+          <img src={thumbnail3} alt="" />
+          <h2>Best channel to learn coding that help you to be a web developer</h2>
+          <h3>Greatstack</h3>
+          <p>15k views &bull; 2 days ago</p>
+      </div>
+      <div className="card">
+          <img src={thumbnail4} alt="" />
+          <h2>Best channel to learn coding that help you to be a web developer</h2>
+          <h3>Greatstack</h3>
+          <p>15k views &bull; 2 days ago</p>
+      </div>
+      <div className="card">
+          <img src={thumbnail5} alt="" />
+          <h2>Best channel to learn coding that help you to be a web developer</h2>
+          <h3>Greatstack</h3>
+          <p>15k views &bull; 2 days ago</p>
+      </div>
+      <div className="card">
+          <img src={thumbnail6} alt="" />
+          <h2>Best channel to learn coding that help you to be a web developer</h2>
+          <h3>Greatstack</h3>
+          <p>15k views &bull; 2 days ago</p>
+      </div>
+      <div className="card">
+          <img src={thumbnail7} alt="" />
+          <h2>Best channel to learn coding that help you to be a web developer</h2>
+          <h3>Greatstack</h3>
+          <p>15k views &bull; 2 days ago</p>
+      </div>
+      <div className="card">
+          <img src={thumbnail8} alt="" />
+          <h2>Best channel to learn coding that help you to be a web developer</h2>
+          <h3>Greatstack</h3>
+          <p>15k views &bull; 2 days ago</p>
+      </div>
+      <div className="card">
+          <img src={thumbnail1} alt="" />
+          <h2>Best channel to learn coding that help you to be a web developer</h2>
+          <h3>Greatstack</h3>
+          <p>15k views &bull; 2 days ago</p>
+      </div>
+      <div className="card">
+          <img src={thumbnail2} alt="" />
+          <h2>Best channel to learn coding that help you to be a web developer</h2>
+          <h3>Greatstack</h3>
+          <p>15k views &bull; 2 days ago</p>
+      </div>
+      <div className="card">
+          <img src={thumbnail3} alt="" />
+          <h2>Best channel to learn coding that help you to be a web developer</h2>
+          <h3>Greatstack</h3>
+          <p>15k views &bull; 2 days ago</p>
+      </div>
+      <div className="card">
+          <img src={thumbnail4} alt="" />
+          <h2>Best channel to learn coding that help you to be a web developer</h2>
+          <h3>Greatstack</h3>
+          <p>15k views &bull; 2 days ago</p>
+      </div>
+      <div className="card">
+          <img src={thumbnail5} alt="" />
+          <h2>Best channel to learn coding that help you to be a web developer</h2>
+          <h3>Greatstack</h3>
+          <p>15k views &bull; 2 days ago</p>
+      </div>
+      <div className="card">
+          <img src={thumbnail6} alt="" />
+          <h2>Best channel to learn coding that help you to be a web developer</h2>
+          <h3>Greatstack</h3>
+          <p>15k views &bull; 2 days ago</p>
+      </div>
+      <div className="card">
+          <img src={thumbnail7} alt="" />
+          <h2>Best channel to learn coding that help you to be a web developer</h2>
+          <h3>Greatstack</h3>
+          <p>15k views &bull; 2 days ago</p>
+      </div>
+      <div className="card">
+          <img src={thumbnail8} alt="" />
+          <h2>Best channel to learn coding that help you to be a web developer</h2>
+          <h3>Greatstack</h3>
+          <p>15k views &bull; 2 days ago</p>
+      </div>
     </div>
   )
 }
