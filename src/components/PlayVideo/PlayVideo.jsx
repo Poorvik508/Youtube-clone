@@ -11,14 +11,23 @@ import { API_KEY, value_conventer } from "../../Data"
 import moment from "moment"
 const PlayVideo = ({ videoId }) => {
     const [apiData, setapidata] = useState(null)
+    const [channeldata,setchanneldata]=useState(null)
     const fetchVideoData = async () => {
       const videoData_url=`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`
-        await fetch(videoData_url).then(res => res.json()).then(data => setapidata(data.items[0]))
+        await fetch(videoData_url).then(res=>res.json()).then(data=>setapidata(data.items[0]))
         
     }
+    const fetch_otherdata = async() => {
+        const channeldata_url = ` https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${apiData.snippet.channelId}&key=${API_KEY}`;
+        await fetch(channeldata_url).then(res=>res.json()).then(data=>setchanneldata(data.items[0]))
+    }   
     useEffect(() => {
         fetchVideoData();
-    },[])
+
+    }, [])
+    useEffect(() => {
+        fetch_otherdata();
+    },[apiData])
 
   return (
     <div className="play-video">
@@ -55,10 +64,10 @@ const PlayVideo = ({ videoId }) => {
       </div>
       <hr />
       <div className="publisher">
-        <img src={jack} alt="" />
+        <img src={channeldata?channeldata.snippet.thumbnails.default.url:jack} alt="" />
         <div>
-          <p>GreatStack</p>
-          <span>1M Subscribers</span>
+                  <p>{apiData?apiData.snippet.channelTitle:"" }</p>
+          <span>{channeldata?value_conventer(channeldata.statistics.subscriberCount):"1K"} Subscribers</span>
         </div>
         <button>Subscribe</button>
       </div>
