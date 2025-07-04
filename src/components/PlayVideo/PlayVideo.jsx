@@ -11,7 +11,8 @@ import { API_KEY, value_conventer } from "../../Data"
 import moment from "moment"
 const PlayVideo = ({ videoId }) => {
     const [apiData, setapidata] = useState(null)
-    const [channeldata,setchanneldata]=useState(null)
+    const [channeldata, setchanneldata] = useState(null)
+    const [commentdata,setcommentdata]=useState([])
     const fetchVideoData = async () => {
       const videoData_url=`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`
         await fetch(videoData_url).then(res=>res.json()).then(data=>setapidata(data.items[0]))
@@ -19,7 +20,10 @@ const PlayVideo = ({ videoId }) => {
     }
     const fetch_otherdata = async() => {
         const channeldata_url = ` https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${apiData.snippet.channelId}&key=${API_KEY}`;
-        await fetch(channeldata_url).then(res=>res.json()).then(data=>setchanneldata(data.items[0]))
+        await fetch(channeldata_url).then(res => res.json()).then(data => setchanneldata(data.items[0]))
+        
+        const comment_url = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=50&videoId=${videoId ? videoId : _VB39Jo8mAQ}&key=${API_KEY}`;
+        await  fetch(comment_url).then(res=>res.json()).then(data=>setcommentdata(data.items))
     }   
     useEffect(() => {
         fetchVideoData();
@@ -74,79 +78,29 @@ const PlayVideo = ({ videoId }) => {
       <div className="vid-description">
               <p>{apiData?apiData.snippet.description.slice(0,250):"video description" }</p>
         <hr />
-              <h4>{apiData?value_conventer(apiData.statistics.commentCount):10 }</h4>
-        <div className="comment">
-          <img src={user_profile} alt="" />
-          <div>
-            <h3>
-              Jack Nicholson <span>1day ago</span>
-            </h3>
-            <p>
-              A global computer network providing a variety of information and
-              cc of interconnectd networks using standardized communication
-              protocols.
-            </p>
-            <div className="comment-action">
-              <img src={like} alt="" />
-              <span>244</span>
-              <img src={dislike} alt="" />
-            </div>
-          </div>
-        </div>
-        <div className="comment">
-          <img src={user_profile} alt="" />
-          <div>
-            <h3>
-              Jack Nicholson <span>1day ago</span>
-            </h3>
-            <p>
-              A global computer network providing a variety of information and
-              cc of interconnectd networks using standardized communication
-              protocols.
-            </p>
-            <div className="comment-action">
-              <img src={like} alt="" />
-              <span>244</span>
-              <img src={dislike} alt="" />
-            </div>
-          </div>
-        </div>
-        <div className="comment">
-          <img src={user_profile} alt="" />
-          <div>
-            <h3>
-              Jack Nicholson <span>1day ago</span>
-            </h3>
-            <p>
-              A global computer network providing a variety of information and
-              cc of interconnectd networks using standardized communication
-              protocols.
-            </p>
-            <div className="comment-action">
-              <img src={like} alt="" />
-              <span>244</span>
-              <img src={dislike} alt="" />
-            </div>
-          </div>
-        </div>
-        <div className="comment">
-          <img src={user_profile} alt="" />
-          <div>
-            <h3>
-              Jack Nicholson <span>1day ago</span>
-            </h3>
-            <p>
-              A global computer network providing a variety of information and
-              cc of interconnectd networks using standardized communication
-              protocols.
-            </p>
-            <div className="comment-action">
-              <img src={like} alt="" />
-              <span>244</span>
-              <img src={dislike} alt="" />
-            </div>
-          </div>
-        </div>
+              <h4>{apiData ? value_conventer(apiData.statistics.commentCount) : 10}</h4>
+              {commentdata.map((item, index) => {
+                  return (
+                    <div key={index} className="comment">
+                      <img src={item.snippet.topLevelComment.snippet.authorProfileImageUrl} alt="" />
+                      <div>
+                        <h3>
+                        {item.snippet.topLevelComment.snippet.authorDisplayName} <span>1day ago</span>
+                        </h3>
+                        <p>
+                         {item.snippet.topLevelComment.snippet.textDisplay}
+                        </p>
+                        <div className="comment-action">
+                          <img src={like} alt="" />
+                                  <span>{value_conventer(item.snippet.topLevelComment.snippet.likeCount)}</span>
+                          <img src={dislike} alt="" />
+                        </div>
+                      </div>
+                    </div>
+                  );
+              })}      
+        
+        
       </div>
     </div>
   );
